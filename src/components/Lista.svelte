@@ -9,21 +9,19 @@
 	const feito = (checkbox) => {
 		let th = checkbox.parentElement;
 		let tr = th.parentElement;
-		tr.querySelector("td").classList.toggle("feito");
+		if(checkbox.checked)
+			tr.querySelector("td").style.textDecoration = 'line-through'
+		else
+			tr.querySelector("td").style.textDecoration = 'none'
 
 	}
 
 </script>
 
-<style>
-	/*Riscar itens da lista*/
-	.feito { text-decoration: line-through; }
-</style>
-
 {#each itens as {nome}, i}
 <tr>
 	<th><input type="checkbox" on:click={() => feito(this)}></th>
-	<td class="svelte-1444hhz">{nome}</td>
+	<td>{nome}</td>
 	<th><button on:click={() => excluir(i)} class="button is-danger">Excluir</button></th>
 </tr>
 {/each}
